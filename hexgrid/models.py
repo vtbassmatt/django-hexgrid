@@ -61,3 +61,7 @@ class HexCell(models.Model):
             # but exclude the exact match (self)
             q=self.q, r=self.r, s=self.s
         )
+
+    def distance_to(self, other: 'HexCell'):
+        vector = (self.q - other.q, self.r - other.r, self.s - other.s)
+        return max([abs(n) for n in vector])
