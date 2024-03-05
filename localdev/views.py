@@ -1,5 +1,5 @@
 from django.http import Http404
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 from hexgrid.models import HexCell
 
@@ -9,14 +9,7 @@ def home(request):
     if is_new:
         origin.save()
 
-    return render(
-        request,
-        'cell.html',
-        {
-            'cell': origin,
-            'neighbors': origin.get_neighbor_coords(),
-        }
-    )
+    return redirect('cell', q=0, r=0, s=0)
 
 
 def cell(request, q, r, s):
