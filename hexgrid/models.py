@@ -69,12 +69,14 @@ class HexCell(models.Model):
         Gets the coordinates of all neighboring cells, whether or
         not they exist.
         """
-        result = {}
-        for name in HexCell.Direction.names:
-            vec = _DIRECTION_VECTOR[HexCell.Direction[name]]
-            q, r, s = self.q + vec[0], self.r + vec[1], self.s + vec[2]
-            result[name] = (q, r, s)
-        return result
+        return {
+            name: (
+                self.q + _DIRECTION_VECTOR[HexCell.Direction[name]][0],
+                self.r + _DIRECTION_VECTOR[HexCell.Direction[name]][1],
+                self.s + _DIRECTION_VECTOR[HexCell.Direction[name]][2],
+            )
+            for name in HexCell.Direction.names
+        }
 
     def get_neighbors(self):
         "Gets all the neighboring cells of this one as long as they exist."
