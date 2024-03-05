@@ -14,7 +14,33 @@
 <body>
   <div class="container">
     <h1>Things on a Hex Grid</h1>
-    <p>You are at {{ cell }}.</p>
+    <table style="text-align: center;">
+      <tr>
+        <td></td>
+        <td><a href="{% url 'cell' neighbors.TWELVE_OCLOCK.0 neighbors.TWELVE_OCLOCK.1 neighbors.TWELVE_OCLOCK.2 %}">Go ⬆️</a></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a href="{% url 'cell' neighbors.TEN_OCLOCK.0 neighbors.TEN_OCLOCK.1 neighbors.TEN_OCLOCK.2 %}">Go ↖️</a></td>
+        <td></td>
+        <td><a href="{% url 'cell' neighbors.TWO_OCLOCK.0 neighbors.TWO_OCLOCK.1 neighbors.TWO_OCLOCK.2 %}">Go ↗️</a></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>You are at {{ cell }}.</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a href="{% url 'cell' neighbors.EIGHT_OCLOCK.0 neighbors.EIGHT_OCLOCK.1 neighbors.EIGHT_OCLOCK.2 %}">Go ↙️</a></td>
+        <td></td>
+        <td><a href="{% url 'cell' neighbors.FOUR_OCLOCK.0 neighbors.FOUR_OCLOCK.1 neighbors.FOUR_OCLOCK.2 %}">Go ↘️</a></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><a href="{% url 'cell' neighbors.SIX_OCLOCK.0 neighbors.SIX_OCLOCK.1 neighbors.SIX_OCLOCK.2 %}">Go ⬇️</a></td>
+        <td></td>
+      </tr>
+    </table>
     {% if cell.thing_set.count > 0 %}
     <div>
       The things here are:

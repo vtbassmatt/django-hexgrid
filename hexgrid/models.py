@@ -37,21 +37,47 @@ class HexCell(models.Model):
 
     @classmethod
     def from_axial(cls, q: int, r: int):
+        "Axial coordinates work like cubic, but the `s` is computed."
         return cls(q=q, r=r, s=-q-r)
 
     @classmethod
     def get_or_create_origin(cls):
+        """
+        Get or create the hex cell at (0,0,0).
+        
+        Like Django's get_or_create method, returns both the object
+        and whether it's new. Does not save the new object!
+        """
         return cls._default_manager.get_or_create(q=0, r=0, s=0)
 
     def get_or_create_neighbor(self, direction: Direction):
+        """
+        Get or create the hex cell neighboring this one.
+        
+        Like Django's get_or_create method, returns both the object
+        and whether it's new. Does not save the new object!
+        """
         deltas = _DIRECTION_VECTOR[direction.value]
         return self._meta.default_manager.get_or_create(
             q=self.q + deltas[0],
             r=self.r + deltas[1],
             s=self.s + deltas[2],
         )
+    
+    def get_neighbor_coords(self):
+        """
+        Gets the coordinates of all neighboring cells, whether or
+        not they exist.
+        """
+        result = {}
+        for name in HexCell.Direction.names:
+            vec = _DIRECTION_VECTOR[HexCell.Direction[name]]
+            q, r, s = self.q + vec[0], self.r + vec[1], self.s + vec[2]
+            result[name] = (q, r, s)
+        return result
 
     def get_neighbors(self):
+        "Gets all the neighboring cells of this one as long as they exist."
         return self._meta.default_manager.filter(
             # find our neighbors
             q__in=[self.q-1, self.q, self.q+1],
@@ -63,5 +89,6 @@ class HexCell(models.Model):
         )
 
     def distance_to(self, other: 'HexCell'):
+        "Compute the distance between two cells."
         vector = (self.q - other.q, self.r - other.r, self.s - other.s)
         return max([abs(n) for n in vector])

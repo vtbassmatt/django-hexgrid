@@ -15,11 +15,24 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, register_converter
 
 from localdev import views
+
+
+class NegativeIntConverter:
+    regex = "-?[0-9]+"
+
+    def to_python(self, value):
+        return int(value)
+    
+    def to_url(self, value):
+        return str(value)
+
+register_converter(NegativeIntConverter, 'anyint')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),
+    path('cell/<anyint:q>/<anyint:r>/<anyint:s>', views.cell, name='cell'),
 ]
