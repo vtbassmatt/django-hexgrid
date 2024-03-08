@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,8 +6,8 @@
   <title>Things on a Hex Grid</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="description" content="" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3
-/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+  <link href="{% static 'hex.css' %}" rel="stylesheet" crossorigin="anonymous">
   <!--link rel="icon" href="favicon.png"-->
   <meta name="theme-color" content="#00a200">
 </head>
@@ -14,43 +15,30 @@
 <body>
   <div class="container">
     <h1>Things on a Hex Grid</h1>
-    <table style="text-align: center;">
-      <tr>
-        <td></td>
-        <td><a href="{% url 'cell' neighbors.TWELVE_OCLOCK.0 neighbors.TWELVE_OCLOCK.1 neighbors.TWELVE_OCLOCK.2 %}">Go ⬆️</a></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><a href="{% url 'cell' neighbors.TEN_OCLOCK.0 neighbors.TEN_OCLOCK.1 neighbors.TEN_OCLOCK.2 %}">Go ↖️</a></td>
-        <td></td>
-        <td><a href="{% url 'cell' neighbors.TWO_OCLOCK.0 neighbors.TWO_OCLOCK.1 neighbors.TWO_OCLOCK.2 %}">Go ↗️</a></td>
-      </tr>
-      <tr>
-        <td></td>
-        <td>You are at {{ cell }}.</td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><a href="{% url 'cell' neighbors.EIGHT_OCLOCK.0 neighbors.EIGHT_OCLOCK.1 neighbors.EIGHT_OCLOCK.2 %}">Go ↙️</a></td>
-        <td></td>
-        <td><a href="{% url 'cell' neighbors.FOUR_OCLOCK.0 neighbors.FOUR_OCLOCK.1 neighbors.FOUR_OCLOCK.2 %}">Go ↘️</a></td>
-      </tr>
-      <tr>
-        <td></td>
-        <td><a href="{% url 'cell' neighbors.SIX_OCLOCK.0 neighbors.SIX_OCLOCK.1 neighbors.SIX_OCLOCK.2 %}">Go ⬇️</a></td>
-        <td></td>
-      </tr>
-    </table>
-    {% if cell.thing_set.count > 0 %}
-    <div>
-      The things here are:
-      <ul>
-        {% for thing in cell.thing_set.all %}
-        <li>{{ thing }}</li>
-        {% endfor %}
-      </ul>
+
+    <div class="hex-grid">
+      <div class="hexagon center-text hexagon-nw"><a href="{% url 'cell' neighbors.TEN_OCLOCK.0 neighbors.TEN_OCLOCK.1 neighbors.TEN_OCLOCK.2 %}">Go ↖️</a></div>
+      <div class="hexagon center-text hexagon-no"><a href="{% url 'cell' neighbors.TWELVE_OCLOCK.0 neighbors.TWELVE_OCLOCK.1 neighbors.TWELVE_OCLOCK.2 %}">Go ⬆️</a></div>
+      <div class="hexagon center-text hexagon-ne"><a href="{% url 'cell' neighbors.TWO_OCLOCK.0 neighbors.TWO_OCLOCK.1 neighbors.TWO_OCLOCK.2 %}">Go ↗️</a></div>
+      <div class="hexagon center-text hexagon-mid">
+        <div>
+          <p>You are at {{ cell }}.</p>
+          {% if cell.thing_set.count > 0 %}
+          <br>
+          The things here are:
+          <ul>
+            {% for thing in cell.thing_set.all %}
+            <li>{{ thing }}</li>
+            {% endfor %}
+          </ul>
+          {% endif %}
+        </div>
+      </div>
+      <div class="hexagon center-text hexagon-sw"><a href="{% url 'cell' neighbors.EIGHT_OCLOCK.0 neighbors.EIGHT_OCLOCK.1 neighbors.EIGHT_OCLOCK.2 %}">Go ↙️</a></div>
+      <div class="hexagon center-text hexagon-so"><a href="{% url 'cell' neighbors.SIX_OCLOCK.0 neighbors.SIX_OCLOCK.1 neighbors.SIX_OCLOCK.2 %}">Go ⬇️</a></div>
+      <div class="hexagon center-text hexagon-se"><a href="{% url 'cell' neighbors.FOUR_OCLOCK.0 neighbors.FOUR_OCLOCK.1 neighbors.FOUR_OCLOCK.2 %}">Go ↘️</a></div>
     </div>
-    {% endif %}
+    
   </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3
 /dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
