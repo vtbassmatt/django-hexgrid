@@ -15,7 +15,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, register_converter
+from django.urls import path, register_converter, include
 
 from localdev import views
 
@@ -33,6 +33,7 @@ register_converter(NegativeIntConverter, 'anyint')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path("__debug__/", include("debug_toolbar.urls")),
     path('', views.home, name='home'),
     path('cell/<anyint:q>/<anyint:r>/<anyint:s>', views.cell, name='cell'),
 ]
