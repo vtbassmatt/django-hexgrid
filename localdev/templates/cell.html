@@ -39,7 +39,6 @@
         <div>
           <p>You are at {{ cell }}.</p>
           {% if cell.thing_set.count > 0 %}
-          <br>
           The things here are:
           <ul>
             {% for thing in cell.thing_set.all %}
