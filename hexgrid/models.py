@@ -94,3 +94,6 @@ class HexCell(models.Model):
         "Compute the distance between two cells."
         vector = (self.q - other.q, self.r - other.r, self.s - other.s)
         return max([abs(n) for n in vector])
+
+    def is_origin(self):
+        return self.q == 0 and self.r == 0 and self.s == 0

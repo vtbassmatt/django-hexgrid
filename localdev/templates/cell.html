@@ -68,6 +68,10 @@
         </p>
       </div>
     </div>
+
+    {% if not cell.is_origin %}
+    <p><a href="{% url 'home' %}">Return to center</a></p>
+    {% endif %}
     
   </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3
