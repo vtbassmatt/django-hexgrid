@@ -17,10 +17,25 @@
     <h1>Things on a Hex Grid</h1>
 
     <div class="hex-grid">
-      <div class="hexagon center-text hexagon-nw"><a href="{% url 'cell' neighbors.TEN_OCLOCK.0 neighbors.TEN_OCLOCK.1 neighbors.TEN_OCLOCK.2 %}">Go ↖️</a></div>
-      <div class="hexagon center-text hexagon-no"><a href="{% url 'cell' neighbors.TWELVE_OCLOCK.0 neighbors.TWELVE_OCLOCK.1 neighbors.TWELVE_OCLOCK.2 %}">Go ⬆️</a></div>
-      <div class="hexagon center-text hexagon-ne"><a href="{% url 'cell' neighbors.TWO_OCLOCK.0 neighbors.TWO_OCLOCK.1 neighbors.TWO_OCLOCK.2 %}">Go ↗️</a></div>
-      <div class="hexagon center-text hexagon-mid">
+      <div class="hexagon center-text hexagon-nw yellow-beige">
+        <p>
+          <a href="{% url 'cell' neighbors.TEN_OCLOCK.0 neighbors.TEN_OCLOCK.1 neighbors.TEN_OCLOCK.2 %}">Go ↖️</a><br>
+          {{neighbors.TEN_OCLOCK}}
+        </p>
+      </div>
+      <div class="hexagon center-text hexagon-no yellow-beige">
+        <p>
+          <a href="{% url 'cell' neighbors.TWELVE_OCLOCK.0 neighbors.TWELVE_OCLOCK.1 neighbors.TWELVE_OCLOCK.2 %}">Go ⬆️</a><br>
+          {{neighbors.TWELVE_OCLOCK}}
+        </p>
+      </div>
+      <div class="hexagon center-text hexagon-ne yellow-beige">
+        <p>
+          <a href="{% url 'cell' neighbors.TWO_OCLOCK.0 neighbors.TWO_OCLOCK.1 neighbors.TWO_OCLOCK.2 %}">Go ↗️</a><br>
+          {{neighbors.TWO_OCLOCK}}
+        </p>
+      </div>
+      <div class="hexagon center-text hexagon-mid cadet-blue">
         <div>
           <p>You are at {{ cell }}.</p>
           {% if cell.thing_set.count > 0 %}
@@ -34,9 +49,24 @@
           {% endif %}
         </div>
       </div>
-      <div class="hexagon center-text hexagon-sw"><a href="{% url 'cell' neighbors.EIGHT_OCLOCK.0 neighbors.EIGHT_OCLOCK.1 neighbors.EIGHT_OCLOCK.2 %}">Go ↙️</a></div>
-      <div class="hexagon center-text hexagon-so"><a href="{% url 'cell' neighbors.SIX_OCLOCK.0 neighbors.SIX_OCLOCK.1 neighbors.SIX_OCLOCK.2 %}">Go ⬇️</a></div>
-      <div class="hexagon center-text hexagon-se"><a href="{% url 'cell' neighbors.FOUR_OCLOCK.0 neighbors.FOUR_OCLOCK.1 neighbors.FOUR_OCLOCK.2 %}">Go ↘️</a></div>
+      <div class="hexagon center-text hexagon-sw yellow-beige">
+        <p>
+          <a href="{% url 'cell' neighbors.EIGHT_OCLOCK.0 neighbors.EIGHT_OCLOCK.1 neighbors.EIGHT_OCLOCK.2 %}">Go ↙️</a><br>
+          {{neighbors.EIGHT_OCLOCK}}
+        </p>
+      </div>
+      <div class="hexagon center-text hexagon-so yellow-beige">
+        <p>
+          <a href="{% url 'cell' neighbors.SIX_OCLOCK.0 neighbors.SIX_OCLOCK.1 neighbors.SIX_OCLOCK.2 %}">Go ⬇️</a><br>
+          {{neighbors.SIX_OCLOCK}}
+        </p>
+      </div>
+      <div class="hexagon center-text hexagon-se yellow-beige">
+        <p>
+          <a href="{% url 'cell' neighbors.FOUR_OCLOCK.0 neighbors.FOUR_OCLOCK.1 neighbors.FOUR_OCLOCK.2 %}">Go ↘️</a><br>
+          {{neighbors.FOUR_OCLOCK}}
+        </p>
+      </div>
     </div>
     
   </div>

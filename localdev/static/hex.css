@@ -18,8 +18,13 @@
 .hexagon {
   width: var(--hex-size);
   height: var(--hex-size);
-  background: cadetblue;
   clip-path: polygon(25% 5%, 75% 5%, 100% 50%, 75% 95%, 25% 95%, 0% 50%);
+}
+.cadet-blue {
+  background: radial-gradient(#91f2f5 0, #91f2f5 30%, cadetblue 100%);
+}
+.yellow-beige {
+  background: radial-gradient(#f2f591 0, #f2f591 30%, #9ea05f 100%);
 }
 .hexagon-nw {
   position: absolute;
