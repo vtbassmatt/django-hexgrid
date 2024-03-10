@@ -35,5 +35,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("__debug__/", include("debug_toolbar.urls")),
     path('', views.home, name='home'),
-    path('cell/<anyint:q>/<anyint:r>/<anyint:s>', views.cell, name='cell'),
+    path('cell/<anyint:q>,<anyint:r>,<anyint:s>', views.cell, name='cell'),
 ]
