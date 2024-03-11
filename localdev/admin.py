@@ -1,3 +1,8 @@
 from django.contrib import admin
 
-# Register your models here.
+from localdev.models import Thing
+from hexgrid.models import HexCell
+
+
+admin.site.register(Thing)
+admin.site.register(HexCell)
