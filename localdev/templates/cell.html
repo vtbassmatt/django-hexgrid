@@ -17,25 +17,25 @@
     <h1>Things on a Hex Grid</h1>
 
     <div class="hex-grid">
-      <div class="hexagon center-text hexagon-nw yellow-beige">
+      <div class="hexagon center-text hexagon-nw color-fill {% if neighbors.TEN_OCLOCK.cell %}grape{% else %}yellow-beige{% endif %}">
         <p>
-          <a href="{% url 'cell' neighbors.TEN_OCLOCK.0 neighbors.TEN_OCLOCK.1 neighbors.TEN_OCLOCK.2 %}">Go ↖️</a><br>
-          {{neighbors.TEN_OCLOCK}}
+          <a href="{% url 'cell' neighbors.TEN_OCLOCK.coords.0 neighbors.TEN_OCLOCK.coords.1 neighbors.TEN_OCLOCK.coords.2 %}">Go ↖️</a><br>
+          {{neighbors.TEN_OCLOCK.coords}}
         </p>
       </div>
-      <div class="hexagon center-text hexagon-no yellow-beige">
+      <div class="hexagon center-text hexagon-no color-fill {% if neighbors.TWELVE_OCLOCK.cell %}grape{% else %}yellow-beige{% endif %}">
         <p>
-          <a href="{% url 'cell' neighbors.TWELVE_OCLOCK.0 neighbors.TWELVE_OCLOCK.1 neighbors.TWELVE_OCLOCK.2 %}">Go ⬆️</a><br>
-          {{neighbors.TWELVE_OCLOCK}}
+          <a href="{% url 'cell' neighbors.TWELVE_OCLOCK.coords.0 neighbors.TWELVE_OCLOCK.coords.1 neighbors.TWELVE_OCLOCK.coords.2 %}">Go ⬆️</a><br>
+          {{neighbors.TWELVE_OCLOCK.coords}}
         </p>
       </div>
-      <div class="hexagon center-text hexagon-ne yellow-beige">
+      <div class="hexagon center-text hexagon-ne color-fill {% if neighbors.TWO_OCLOCK.cell %}grape{% else %}yellow-beige{% endif %}">
         <p>
-          <a href="{% url 'cell' neighbors.TWO_OCLOCK.0 neighbors.TWO_OCLOCK.1 neighbors.TWO_OCLOCK.2 %}">Go ↗️</a><br>
-          {{neighbors.TWO_OCLOCK}}
+          <a href="{% url 'cell' neighbors.TWO_OCLOCK.coords.0 neighbors.TWO_OCLOCK.coords.1 neighbors.TWO_OCLOCK.coords.2 %}">Go ↗️</a><br>
+          {{neighbors.TWO_OCLOCK.coords}}
         </p>
       </div>
-      <div class="hexagon center-text hexagon-mid cadet-blue">
+      <div class="hexagon center-text hexagon-mid color-fill cadet-blue">
         <div>
           <p>You are at {{ cell }}.</p>
           {% if cell.thing_set.count > 0 %}
@@ -48,22 +48,22 @@
           {% endif %}
         </div>
       </div>
-      <div class="hexagon center-text hexagon-sw yellow-beige">
+      <div class="hexagon center-text hexagon-sw color-fill {% if neighbors.EIGHT_OCLOCK.cell %}grape{% else %}yellow-beige{% endif %}">
         <p>
-          <a href="{% url 'cell' neighbors.EIGHT_OCLOCK.0 neighbors.EIGHT_OCLOCK.1 neighbors.EIGHT_OCLOCK.2 %}">Go ↙️</a><br>
-          {{neighbors.EIGHT_OCLOCK}}
+          <a href="{% url 'cell' neighbors.EIGHT_OCLOCK.coords.0 neighbors.EIGHT_OCLOCK.coords.1 neighbors.EIGHT_OCLOCK.coords.2 %}">Go ↙️</a><br>
+          {{neighbors.EIGHT_OCLOCK.coords}}
         </p>
       </div>
-      <div class="hexagon center-text hexagon-so yellow-beige">
+      <div class="hexagon center-text hexagon-so color-fill {% if neighbors.SIX_OCLOCK.cell %}grape{% else %}yellow-beige{% endif %}">
         <p>
-          <a href="{% url 'cell' neighbors.SIX_OCLOCK.0 neighbors.SIX_OCLOCK.1 neighbors.SIX_OCLOCK.2 %}">Go ⬇️</a><br>
-          {{neighbors.SIX_OCLOCK}}
+          <a href="{% url 'cell' neighbors.SIX_OCLOCK.coords.0 neighbors.SIX_OCLOCK.coords.1 neighbors.SIX_OCLOCK.coords.2 %}">Go ⬇️</a><br>
+          {{neighbors.SIX_OCLOCK.coords}}
         </p>
       </div>
-      <div class="hexagon center-text hexagon-se yellow-beige">
+      <div class="hexagon center-text hexagon-se color-fill {% if neighbors.FOUR_OCLOCK.cell %}grape{% else %}yellow-beige{% endif %}">
         <p>
-          <a href="{% url 'cell' neighbors.FOUR_OCLOCK.0 neighbors.FOUR_OCLOCK.1 neighbors.FOUR_OCLOCK.2 %}">Go ↘️</a><br>
-          {{neighbors.FOUR_OCLOCK}}
+          <a href="{% url 'cell' neighbors.FOUR_OCLOCK.coords.0 neighbors.FOUR_OCLOCK.coords.1 neighbors.FOUR_OCLOCK.coords.2 %}">Go ↘️</a><br>
+          {{neighbors.FOUR_OCLOCK.coords}}
         </p>
       </div>
     </div>

@@ -22,11 +22,25 @@ def cell(request, q, r, s):
         else:
             raise Http404()
 
+    extant_neighbors = cell.get_neighbors()
+    coords_to_neighbors = {
+        (nbr.q, nbr.r, nbr.s): nbr
+        for nbr in extant_neighbors
+    }
+    directions = cell.get_neighbor_coords()
+    neighbor_data = {
+        direction: {
+            'coords': coordinate,
+            'cell': coords_to_neighbors.get(coordinate),
+        }
+        for direction, coordinate in directions.items()
+    }
+
     return render(
         request,
         'cell.html',
         {
             'cell': cell,
-            'neighbors': cell.get_neighbor_coords(),
+            'neighbors': neighbor_data,
         }
     )

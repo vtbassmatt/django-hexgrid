@@ -21,10 +21,19 @@
   clip-path: polygon(25% 5%, 75% 5%, 100% 50%, 75% 95%, 25% 95%, 0% 50%);
 }
 .cadet-blue {
-  background: radial-gradient(#91f2f5 0, #91f2f5 30%, cadetblue 100%);
+  --gradient-center: #91f2f5;
+  --gradient-edge: cadetblue;
 }
 .yellow-beige {
-  background: radial-gradient(#f2f591 0, #f2f591 30%, #9ea05f 100%);
+  --gradient-center: #f2f591;
+  --gradient-edge: #9ea05f;
+}
+.grape {
+  --gradient-center: #f591f2;
+  --gradient-edge: #a05f9e;
+}
+.color-fill {
+  background: radial-gradient(var(--gradient-center) 0, var(--gradient-center) 30%, var(--gradient-edge) 100%);
 }
 .hexagon-nw {
   position: absolute;
