@@ -31,6 +31,8 @@ def cell(request, q, r, s):
         'cell.html',
         {
             'cell': cell,
-            'neighbors': cell.get_neighbors_and_coords(),
+            'neighbors': cell.get_neighbors_and_coords(
+                prefetch_related=['thing_set']
+            ),
         }
     )

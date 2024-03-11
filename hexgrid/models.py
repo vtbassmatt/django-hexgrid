@@ -81,9 +81,15 @@ class HexCell(models.Model):
             for name in HexCell.Direction.names
         }
 
-    def get_neighbors(self):
-        "Gets all the neighboring cells of this one as long as they exist."
-        return self._meta.default_manager.filter(
+    def get_neighbors(self, prefetch_related: list = None):
+        """
+        Gets all the neighboring cells of this one as long as they exist.
+        
+        Optionally, pass a list of fields to prefetch against any
+        neighbors returned. This can prevent n+1 queries if you're
+        trying to match things which are ForeignKey to a HexCell.
+        """
+        q = self._meta.default_manager.filter(
             # find our neighbors
             q__in=[self.q-1, self.q, self.q+1],
             r__in=[self.r-1, self.r, self.r+1],
@@ -92,19 +98,32 @@ class HexCell(models.Model):
             # but exclude the exact match (self)
             q=self.q, r=self.r, s=self.s
         )
+
+        if prefetch_related:
+            return q.prefetch_related(*prefetch_related)
+        return q
     
-    def get_neighbors_and_coords(self) -> dict[Direction,'CoordsAndCell']:
+    def get_neighbors_and_coords(self, prefetch_related: list = None) -> dict[Direction,'CoordsAndCell']:
         """
         Get the coordinates of neighboring cells (whether or not
         they exist), and include a reference to the cell object for
         each direction if it exists.
+
+        Optionally, pass a list of fields to prefetch against any
+        neighbors returned. This can prevent n+1 queries if you're
+        trying to match things which are ForeignKey to a HexCell.
         """
         extant_neighbors = self.get_neighbors()
+        if prefetch_related:
+            extant_neighbors = extant_neighbors.prefetch_related(*prefetch_related)
+
         coords_to_neighbors = {
             (nbr.q, nbr.r, nbr.s): nbr
             for nbr in extant_neighbors
         }
+        
         directions = self.get_neighbor_coords()
+        
         neighbor_data = {
                 direction: CoordsAndCell(
                     coords=coordinate,

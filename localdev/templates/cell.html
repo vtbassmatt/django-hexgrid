@@ -21,18 +21,21 @@
         <p>
           <a href="{% url 'cell' neighbors.TEN_OCLOCK.coords.0 neighbors.TEN_OCLOCK.coords.1 neighbors.TEN_OCLOCK.coords.2 %}">Go ↖️</a><br>
           {{neighbors.TEN_OCLOCK.coords}}
+          {% if neighbors.TEN_OCLOCK.cell.thing_set.count > 0 %}<br>🎁{% endif %}
         </p>
       </div>
       <div class="hexagon center-text hexagon-no color-fill {% if neighbors.TWELVE_OCLOCK.cell %}grape{% else %}yellow-beige{% endif %}">
         <p>
           <a href="{% url 'cell' neighbors.TWELVE_OCLOCK.coords.0 neighbors.TWELVE_OCLOCK.coords.1 neighbors.TWELVE_OCLOCK.coords.2 %}">Go ⬆️</a><br>
           {{neighbors.TWELVE_OCLOCK.coords}}
+          {% if neighbors.TWELVE_OCLOCK.cell.thing_set.count > 0 %}<br>🎁{% endif %}
         </p>
       </div>
       <div class="hexagon center-text hexagon-ne color-fill {% if neighbors.TWO_OCLOCK.cell %}grape{% else %}yellow-beige{% endif %}">
         <p>
           <a href="{% url 'cell' neighbors.TWO_OCLOCK.coords.0 neighbors.TWO_OCLOCK.coords.1 neighbors.TWO_OCLOCK.coords.2 %}">Go ↗️</a><br>
           {{neighbors.TWO_OCLOCK.coords}}
+          {% if neighbors.TWO_OCLOCK.cell.thing_set.count > 0 %}<br>🎁{% endif %}
         </p>
       </div>
       <div class="hexagon center-text hexagon-mid color-fill cadet-blue">
@@ -52,18 +55,21 @@
         <p>
           <a href="{% url 'cell' neighbors.EIGHT_OCLOCK.coords.0 neighbors.EIGHT_OCLOCK.coords.1 neighbors.EIGHT_OCLOCK.coords.2 %}">Go ↙️</a><br>
           {{neighbors.EIGHT_OCLOCK.coords}}
+          {% if neighbors.EIGHT_OCLOCK.cell.thing_set.count > 0 %}<br>🎁{% endif %}
         </p>
       </div>
       <div class="hexagon center-text hexagon-so color-fill {% if neighbors.SIX_OCLOCK.cell %}grape{% else %}yellow-beige{% endif %}">
         <p>
           <a href="{% url 'cell' neighbors.SIX_OCLOCK.coords.0 neighbors.SIX_OCLOCK.coords.1 neighbors.SIX_OCLOCK.coords.2 %}">Go ⬇️</a><br>
           {{neighbors.SIX_OCLOCK.coords}}
+          {% if neighbors.SIX_OCLOCK.cell.thing_set.count > 0 %}<br>🎁{% endif %}
         </p>
       </div>
       <div class="hexagon center-text hexagon-se color-fill {% if neighbors.FOUR_OCLOCK.cell %}grape{% else %}yellow-beige{% endif %}">
         <p>
           <a href="{% url 'cell' neighbors.FOUR_OCLOCK.coords.0 neighbors.FOUR_OCLOCK.coords.1 neighbors.FOUR_OCLOCK.coords.2 %}">Go ↘️</a><br>
           {{neighbors.FOUR_OCLOCK.coords}}
+          {% if neighbors.FOUR_OCLOCK.cell.thing_set.count > 0 %}<br>🎁{% endif %}
         </p>
       </div>
     </div>
