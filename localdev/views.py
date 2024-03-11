@@ -14,7 +14,11 @@ def home(request):
 
 def cell(request, q, r, s):
     try:
-        cell = HexCell.objects.get(q=q, r=r, s=s)
+        cell = (
+            HexCell.objects
+            .prefetch_related("thing_set")
+            .get(q=q, r=r, s=s)
+        )
     except HexCell.DoesNotExist:
         if s == -q-r:
             cell = HexCell(q=q, r=r, s=s)
