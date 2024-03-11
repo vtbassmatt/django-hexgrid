@@ -39,12 +39,12 @@ class HexCell(models.Model):
         return f"({self.q}, {self.r}, {self.s})"
 
     @classmethod
-    def from_axial(cls, q: int, r: int):
+    def from_axial(cls, q: int, r: int) -> 'HexCell':
         "Axial coordinates work like cubic, but the `s` is computed."
         return cls(q=q, r=r, s=-q-r)
 
     @classmethod
-    def get_or_create_origin(cls):
+    def get_or_create_origin(cls) -> tuple['HexCell', bool]:
         """
         Get or create the hex cell at (0,0,0).
         
@@ -53,7 +53,7 @@ class HexCell(models.Model):
         """
         return cls._default_manager.get_or_create(q=0, r=0, s=0)
 
-    def get_or_create_neighbor(self, direction: Direction):
+    def get_or_create_neighbor(self, direction: Direction) -> tuple['HexCell', bool]:
         """
         Get or create the hex cell neighboring this one.
         
@@ -67,7 +67,7 @@ class HexCell(models.Model):
             s=self.s + deltas[2],
         )
     
-    def get_neighbor_coords(self):
+    def get_neighbor_coords(self) -> dict[Direction,tuple[int,int,int]]:
         """
         Gets the coordinates of all neighboring cells, whether or
         not they exist.
@@ -115,12 +115,12 @@ class HexCell(models.Model):
 
         return neighbor_data
 
-    def distance_to(self, other: 'HexCell'):
+    def distance_to(self, other: 'HexCell') -> int:
         "Compute the distance between two cells."
         vector = (self.q - other.q, self.r - other.r, self.s - other.s)
         return max([abs(n) for n in vector])
 
-    def is_origin(self):
+    def is_origin(self) -> bool:
         return self.q == 0 and self.r == 0 and self.s == 0
 
 
