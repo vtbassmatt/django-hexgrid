@@ -1,3 +1,5 @@
+from typing import NamedTuple
+
 from django.db import models
 
 
@@ -6,6 +8,7 @@ _DIRECTION_VECTOR = (
     (+1, 0, -1), (+1, -1, 0), (0, -1, +1), 
     (-1, 0, +1), (-1, +1, 0), (0, +1, -1),
 )
+
 
 class HexCell(models.Model):
     class Direction(models.IntegerChoices):
@@ -89,6 +92,28 @@ class HexCell(models.Model):
             # but exclude the exact match (self)
             q=self.q, r=self.r, s=self.s
         )
+    
+    def get_neighbors_and_coords(self) -> dict[Direction,'CoordsAndCell']:
+        """
+        Get the coordinates of neighboring cells (whether or not
+        they exist), and include a reference to the cell object for
+        each direction if it exists.
+        """
+        extant_neighbors = self.get_neighbors()
+        coords_to_neighbors = {
+            (nbr.q, nbr.r, nbr.s): nbr
+            for nbr in extant_neighbors
+        }
+        directions = self.get_neighbor_coords()
+        neighbor_data = {
+                direction: CoordsAndCell(
+                    coords=coordinate,
+                    cell=coords_to_neighbors.get(coordinate)
+                )
+                for direction, coordinate in directions.items()
+            }
+
+        return neighbor_data
 
     def distance_to(self, other: 'HexCell'):
         "Compute the distance between two cells."
@@ -97,3 +122,8 @@ class HexCell(models.Model):
 
     def is_origin(self):
         return self.q == 0 and self.r == 0 and self.s == 0
+
+
+class CoordsAndCell(NamedTuple):
+    coords: tuple[int, int, int]
+    cell: HexCell | None
