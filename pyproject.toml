@@ -1,13 +1,32 @@
 [tool.poetry]
-name = "hexgrid"
+name = "django-hexgrid"
 version = "0.1.0"
-description = ""
+description = "A Django implementation of hexagonal grids."
 authors = ["Matt Cooper <vtbassmatt@gmail.com>"]
 readme = "README.md"
+license = "MIT"
+homepage = "https://github.com/vtbassmatt/django-hexgrid"
+repository = "https://github.com/vtbassmatt/django-hexgrid"
+keywords = [
+  "grid",
+  "hexagon",
+  "django",
+]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Framework :: Django",
+  "Intended Audience :: Developers",
+  "Topic :: Games/Entertainment",
+  "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
+  "Topic :: Software Development :: Libraries",
+]
+packages = [
+  { include = "hexgrid" },
+]
 
 [tool.poetry.dependencies]
 python = "^3.11"
-django = "^5.0.2"
+django = "^5.0"
 
 
 [tool.poetry.group.dev.dependencies]
